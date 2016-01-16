@@ -78,36 +78,36 @@ document.getElementById('bup').style.background=presscolor
 }
 var press_down = function(){
 socket.emit('chat message', "pressed down")
-socket.emit('action', "2")
+socket.emit('action', "5")
 document.getElementById('bdown').style.background=presscolor
 }
 
 var press_left = function(){
 socket.emit('chat message', "pressed left")
-socket.emit('action', "3")
+socket.emit('action', "7")
 document.getElementById('bleft').style.background=presscolor
 }
 
 var press_right = function(){
 socket.emit('chat message', "pressed right")
-socket.emit('action', "4")
+socket.emit('action', "3")
 document.getElementById('bright').style.background=presscolor
 }
 
 var unpress_up = function(){
 socket.emit('chat message', "released up")
-socket.emit('action', "1")
+socket.emit('action', "2")
 document.getElementById('bup').style.background=unpresscolor
 }
 var unpress_down = function(){
 socket.emit('chat message', "released down")
-socket.emit('action', "2")
+socket.emit('action', "6")
 document.getElementById('bdown').style.background=unpresscolor
 }
 
 var unpress_left = function(){
 socket.emit('chat message', "released left")
-socket.emit('action', "3")
+socket.emit('action', "8")
 document.getElementById('bleft').style.background=unpresscolor
 }
 
