@@ -1,0 +1,9 @@
+{
+  "name": "Tadpole-Web-Controller",
+  "version": "0.0.1",
+  "description": "controls tadpoles",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.4.4"
+  }
+}

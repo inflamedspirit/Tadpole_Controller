@@ -1,0 +1,26 @@
+Controller webserver for Tadpoles game located at https://github.com/dileepvr/Tadpole_SDL
+
+Code snippets from:
+http://socket.io/get-started/chat/ for basic socket.io configuration
+https://gist.github.com/tedmiston/5935757 for node.js net package
+http://pages.uoregon.edu/wwe/21.html for html keyboard input
+
+
+Requirements: Node.js npm socket.io express
+sudo apt-get install nodejs
+npm install socket.io
+npm install express@4.10.2
+
+
+Usage:
+Start tadpoles:   ./tadpoles
+Start webserver:   nodejs index.js
+Visit localhost:3000 with browser to initiate a tadpole
+
+Use up/down/left/right to control the tadpole or press the arrow buttons on screen.
+
+
+Files:
+index.js serves index.html and opens socket connection to tadpole game to transmit commands.
+
+index.html contains javascript for input and to connect to node.js server with socket.io
