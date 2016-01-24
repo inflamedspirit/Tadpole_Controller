@@ -2,72 +2,60 @@
 <html>
   <head>
     <title>Tadpole Web Controller</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 70%; margin-right: .5%; }
-      form button { width: 29%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      table { background: green }
-      td { width: 50px; height: 50px; background: red;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      cursor: default;
-      text-align: center;
-      font-size: 30px;
-      }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 <body>
 
-<table>
-<tr>
-<td></td>
-<td id='bup' onmousedown="javascript:press_up()" onmouseup="javascript:unpress_up()">&#8593;</td>
-<td></td>
-</tr>
-
-<tr>
-<td id='bleft' onmousedown="javascript:press_left()" onmouseup="javascript:unpress_left()">&#8592;</td>
-<td id='bcenter'>&#9679;</td>
-<td  id='bright' onmousedown="javascript:press_right()" onmouseup="javascript:unpress_right()">&#8594;</td>
-</tr>
-
-<tr>
-<td></td>
-<td id='bdown' onmousedown="javascript:press_down()" onmouseup="javascript:unpress_down()">&#8595;</td>
-<td></td>
-</tr>
-
-</table>
 
 
-<ul id="messages"></ul>
-<form action="">
-  <input id="m" autocomplete="off" /><button>Set Name</button>
-</form>
+<div id='buttons'>
+  <div class='cbutton' id='bupleft'>A
+  </div>
+
+  <div id='bup' class='cbutton'
+       onmousedown="javascript:press_up()"
+       onmouseup="javascript:unpress_up()">
+    &#8593;
+  </div>
+
+  <div class='cbutton' id='bupright'>B
+  </div>
+
+  <div class='cbutton' id='bleft'
+       onmousedown="javascript:press_left()"
+       onmouseup="javascript:unpress_left()">
+    &#8592;
+  </div>
+
+  <div class='cbutton' id='bmiddle'>
+    &#9679;
+  </div>
+
+
+  <div  id='bright' class='cbutton'
+	onmousedown="javascript:press_right()" 
+	onmouseup="javascript:unpress_right()">
+    &#8594;
+  </div>
+
+  <div class='cbutton' id='bdownleft'>C
+  </div>
+
+  <div id='bdown' class='cbutton'
+       onmousedown="javascript:press_down()" 
+       onmouseup="javascript:unpress_down()">
+    &#8595;
+  </div>
+
+  <div class='cbutton' id='bdownright>D
+  </div>
+
+</div>
+
 <script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-
 <script>
-  var socket = io();
-  $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    name = $('#m').val();
-    document.getElementB.innerHTML = name;
-    $('#m').val('');
-    return false;
-  });
-</script>
+var socket = io();
 
-<script>
 presscolor = 'purple'
 unpresscolor = 'red'
 
@@ -159,21 +147,24 @@ document['onkeyup'] = function(e) {
     switch( key ){
     case 37: // q
         unpress_left();
+        return false;
         break;
     case 38:
         unpress_up();
+        return false;
         break;
     case 39:
         unpress_right();
+        return false;
         break;
     case 40:
         unpress_down();
+        return false;
         break;
     }
 
     return document.defaultAction;
 }
-
 
 
 </script>
