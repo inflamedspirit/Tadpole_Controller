@@ -24,25 +24,27 @@
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
     </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
   </head>
 <body>
 
 <table>
 <tr>
 <td></td>
-<td id='bup' onmousedown="javascript:press_up()" onmouseup="javascript:unpress_up()">&#8593;</td>
+<td id='bup' onmousedown="javascript:press_up()" onmouseup="javascript:unpress_up()" ontouchstart="javascript:press_up()" ontouchend="javascript:unpress_up()">&#8593;</td>
 <td></td>
 </tr>
 
 <tr>
-<td id='bleft' onmousedown="javascript:press_left()" onmouseup="javascript:unpress_left()">&#8592;</td>
+<td id='bleft' onmousedown="javascript:press_left()" onmouseup="javascript:unpress_left()" ontouchstart="javascript:press_left()" ontouchend="javascript:unpress_left()">&#8592;</td>
 <td id='bcenter'>&#9679;</td>
-<td  id='bright' onmousedown="javascript:press_right()" onmouseup="javascript:unpress_right()">&#8594;</td>
+<td  id='bright' onmousedown="javascript:press_right()" onmouseup="javascript:unpress_right()" ontouchstart="javascript:press_right()" ontouchend="javascript:unpress_right()">&#8594;</td>
 </tr>
 
 <tr>
 <td></td>
-<td id='bdown' onmousedown="javascript:press_down()" onmouseup="javascript:unpress_down()">&#8595;</td>
+<td id='bdown' onmousedown="javascript:press_down()" onmouseup="javascript:unpress_down()" ontouchstart="javascript:press_down()" ontouchend="javascript:unpress_down()">&#8595;</td>
 <td></td>
 </tr>
 
@@ -72,47 +74,47 @@ presscolor = 'purple'
 unpresscolor = 'red'
 
 var press_up = function(){
-socket.emit('chat message', "pressed up")
+//socket.emit('chat message', "pressed up")
 socket.emit('action', "1")
 document.getElementById('bup').style.background=presscolor
 }
 var press_down = function(){
-socket.emit('chat message', "pressed down")
+//socket.emit('chat message', "pressed down")
 socket.emit('action', "5")
 document.getElementById('bdown').style.background=presscolor
 }
 
 var press_left = function(){
-socket.emit('chat message', "pressed left")
+//socket.emit('chat message', "pressed left")
 socket.emit('action', "7")
 document.getElementById('bleft').style.background=presscolor
 }
 
 var press_right = function(){
-socket.emit('chat message', "pressed right")
+//socket.emit('chat message', "pressed right")
 socket.emit('action', "3")
 document.getElementById('bright').style.background=presscolor
 }
 
 var unpress_up = function(){
-socket.emit('chat message', "released up")
+//socket.emit('chat message', "released up")
 socket.emit('action', "2")
 document.getElementById('bup').style.background=unpresscolor
 }
 var unpress_down = function(){
-socket.emit('chat message', "released down")
+//socket.emit('chat message', "released down")
 socket.emit('action', "6")
 document.getElementById('bdown').style.background=unpresscolor
 }
 
 var unpress_left = function(){
-socket.emit('chat message', "released left")
+//socket.emit('chat message', "released left")
 socket.emit('action', "8")
 document.getElementById('bleft').style.background=unpresscolor
 }
 
 var unpress_right = function(){
-socket.emit('chat message', "released right")
+//socket.emit('chat message', "released right")
 socket.emit('action', "4")
 document.getElementById('bright').style.background=unpresscolor
 }
