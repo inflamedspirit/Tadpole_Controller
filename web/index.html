@@ -31,9 +31,9 @@
 
 <table>
 <tr>
-<td></td>
+<td id='bupleft' onmousedown="javascript:press_upleft()" onmouseup="javascript:unpress_upleft()" ontouchstart="javascript:press_upleft()" ontouchend="javascript:unpress_upleft()">&#8598;</td>
 <td id='bup' onmousedown="javascript:press_up()" onmouseup="javascript:unpress_up()" ontouchstart="javascript:press_up()" ontouchend="javascript:unpress_up()">&#8593;</td>
-<td></td>
+<td id='bupright' onmousedown="javascript:press_upright()" onmouseup="javascript:unpress_upright()" ontouchstart="javascript:press_upright()" ontouchend="javascript:unpress_upright()">&#8599;</td>
 </tr>
 
 <tr>
@@ -43,16 +43,16 @@
 </tr>
 
 <tr>
-<td></td>
+<td id='bdownleft' onmousedown="javascript:press_downleft()" onmouseup="javascript:unpress_downleft()" ontouchstart="javascript:press_downleft()" ontouchend="javascript:unpress_downleft()">&#8601;</td>
 <td id='bdown' onmousedown="javascript:press_down()" onmouseup="javascript:unpress_down()" ontouchstart="javascript:press_down()" ontouchend="javascript:unpress_down()">&#8595;</td>
-<td></td>
+<td id='bdownright' onmousedown="javascript:press_downright()" onmouseup="javascript:unpress_downright()" ontouchstart="javascript:press_downright()" ontouchend="javascript:unpress_downright()">&#8600;</td>
 </tr>
 
 </table>
 
 
 <ul id="messages"></ul>
-<form action="">
+<form action=""  onsubmit="return false">
   <input id="m" autocomplete="off" /><button>Set Name</button>
 </form>
 <script src="/socket.io/socket.io.js"></script>
@@ -96,6 +96,32 @@ socket.emit('action', "3")
 document.getElementById('bright').style.background=presscolor
 }
 
+
+var press_upleft = function(){
+//socket.emit('chat message', "pressed upleft")
+socket.emit('action', "1")
+socket.emit('action', "7")
+document.getElementById('bupleft').style.background=presscolor
+}
+var press_upright = function(){
+//socket.emit('chat message', "pressed upright")
+socket.emit('action', "1")
+socket.emit('action', "3")
+document.getElementById('bupright').style.background=presscolor
+}
+var press_downleft = function(){
+//socket.emit('chat message', "pressed downleft")
+socket.emit('action', "5")
+socket.emit('action', "7")
+document.getElementById('bdownleft').style.background=presscolor
+}
+var press_downright = function(){
+//socket.emit('chat message', "pressed downright")
+socket.emit('action', "5")
+socket.emit('action', "3")
+document.getElementById('bdownright').style.background=presscolor
+}
+
 var unpress_up = function(){
 //socket.emit('chat message', "released up")
 socket.emit('action', "2")
@@ -106,18 +132,42 @@ var unpress_down = function(){
 socket.emit('action', "6")
 document.getElementById('bdown').style.background=unpresscolor
 }
-
 var unpress_left = function(){
 //socket.emit('chat message', "released left")
 socket.emit('action', "8")
 document.getElementById('bleft').style.background=unpresscolor
 }
-
 var unpress_right = function(){
 //socket.emit('chat message', "released right")
 socket.emit('action', "4")
 document.getElementById('bright').style.background=unpresscolor
 }
+
+var unpress_upleft = function(){
+//socket.emit('chat message', "released upleft")
+socket.emit('action', "2")
+socket.emit('action', "8")
+document.getElementById('bupleft').style.background=unpresscolor
+}
+var unpress_upright = function(){
+//socket.emit('chat message', "released upright")
+socket.emit('action', "2")
+socket.emit('action', "4")
+document.getElementById('bupright').style.background=unpresscolor
+}
+var unpress_downleft = function(){
+//socket.emit('chat message', "released downleft")
+socket.emit('action', "6")
+socket.emit('action', "8")
+document.getElementById('bdownleft').style.background=unpresscolor
+}
+var unpress_downright = function(){
+//socket.emit('chat message', "released downright")
+socket.emit('action', "6")
+socket.emit('action', "4")
+document.getElementById('bdownright').style.background=unpresscolor
+}
+
 
 
 document['onkeydown'] = function(e) {
