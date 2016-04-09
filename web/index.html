@@ -29,6 +29,7 @@
   </head>
 <body>
 
+<!-- old table
 <table>
 <tr>
 <td id='bupleft' onmousedown="javascript:press_upleft()" onmouseup="javascript:unpress_upleft()" ontouchstart="javascript:press_upleft()" ontouchend="javascript:unpress_upleft()">&#8598;</td>
@@ -49,7 +50,7 @@
 </tr>
 
 </table>
-
+-->
 
 <ul id="messages"></ul>
 <form action=""  onsubmit="return false">
@@ -58,16 +59,69 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
+<script src="./virtualjoystick.js"></script>
+
+
+
+
 <script>
-  var socket = io();
   $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    name = $('#m').val();
-    document.getElementB.innerHTML = name;
-    $('#m').val('');
-    return false;
+
+  console.log("SUBMITTED");
+
+  socket = io();
+
+  socket.emit('chat message', $('#m').val());
+
+  socket.on('color', function (data) {
+  color = data;
+
+
+
+
+  joystick = new VirtualJoystick({
+  mouseSupport: true,
+  stationaryBase: true,
+  baseX: screen.width/2.0,
+  baseY: screen.width/2.0,
+  strokeStyle: color
+  });
+
+  console.log(joystick);
+
+  loopid = window.setInterval(function(){
+  joystick.up()?socket.emit('action', "1"):socket.emit('action', "2");
+  joystick.down()?socket.emit('action', "5"):socket.emit('action', "6");
+  joystick.left()?socket.emit('action', "7"):socket.emit('action', "8");
+  joystick.right()?socket.emit('action', "3"):socket.emit('action', "4");
+  }, 1/30 * 1000);
+
+  socket.on('hp', function (data) {
+  console.log('HP:' + data)
+  if(data == 0){
+  window.clearInterval(loopid);
+  joystick.destroy();
+//  joystick = null;
+//  socket = null;
+//  delete joystick;
+//  delete socket;
+  }
+  });
+
+
+  });
+
+
+//  name = $('#m').val();
+
+  $('#m').val('');
+  return false;
   });
 </script>
+
+
+
+
 
 <script>
 presscolor = 'purple'
